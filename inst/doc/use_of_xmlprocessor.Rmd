@@ -1,0 +1,72 @@
+---
+title: "How to use package {xmlprocessor}"
+author: "Benjamin Louis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(xmlprocessor)
+```
+
+
+# Fill a xml template
+
+One of the main goal of package {xmlprocessor} is to facilitate the serial creatoin of xml file. From a xml template, you can use a dataframe to replace text and attribute values.
+
+Starting with the creation and printing of a template :
+
+```{r}
+library(xml2)
+template <- read_xml("<parent>
+                        <child nom='child1'>
+                          <grandchild>grandchild1</grandchild>
+                          <grandchild>grandchild2</grandchild>
+                        </child>
+                        <child nom='child2'>
+                          null
+                        </child>
+                      </parent>")
+print(template)                   
+```
+
+The xml template contains 4 values that can be changed : grandchild1, grandchild2, child1 and child2. The first two are texts and the two latter are attributes values.
+
+To fill the template with different values, you can build a dataframe where the columns names are the exact text to be replaced. For text values, this should be the whole text between xml element (<...>thistext</...>) and for attributes values, this should be the whole text between quotes.
+
+
+```{r}
+toreplace <- data.frame(child1 = c("Ben", "Thomas"), child2 = c("Sarah", "Marie"),
+grandchild1 = c("Brad", "Angelica"), grandchild2 = c("Jude", "Lea"))
+toreplace
+```
+
+You can then fill the template with information contained in `toreplace` to create a list with two xml documents with the structure as `template` but where grandchild1, grandchild2, child1 and child2 are replaced by the corresponding values in `toreplace`.
+
+```{r}
+# No export, no collapsing
+newxml <- xml_fill_template(xmltemplate = template, with = toreplace)
+print(newxml[[1]])
+print(newxml[[2]])
+```
+
+It is also possible to collapse the filled xml documents ont a big one by specifying a root node name with the `collapse` argument. Note that if the given root node name is als the root node name of `template`, the latter must contain only one child (which can contains several children and so on).
+
+```{r}
+# Export and collapsing
+newxml <- xml_fill_template(xmltemplate = template, with = toreplace, collapse = "grandparent")
+print(newxml)
+```
+
+Eventually, you can export the xml document by specifying a path to a folder with the `export` argument and a name (or names) of the xml file(s) exported with the `name` argument.
