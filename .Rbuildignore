@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^devstuff_history\.R$
+^data-raw$
+^LICENSE\.md$
