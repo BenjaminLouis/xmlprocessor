@@ -1,7 +1,6 @@
 usethis::use_build_ignore("devstuff_history.R")
 usethis::use_gpl3_license("Benjamin Louis")
-
-usethis::use_data_raw()
+usethis::use_readme_md()
 
 usethis::use_pipe()
 
