@@ -1,32 +1,33 @@
-[![Travis build status](https://travis-ci.org/BenjaminLouis/xmlprocessor.svg?branch=master)](https://travis-ci.org/BenjaminLouis/xmlprocessor)
+---
+title: "How to use package {xmlprocessor}"
+author: "Benjamin Louis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-# Package {xmlprocessor}
-
-The goal of xmlprocessor is to help with the preparation of xml files. It was motivated by the laborious work of xml files processing that are used for simulations in an agronomic model (STICS). It strongly rests on the {xml2} package but contains functions that are wrappers for the creation and filling of xml template. 
-
-
-## Installation
-
-You can install the released version of xmlprocessor the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("BenjaminLouis/xmlprocessor")
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 ```
 
-## Use package {xmlprocessor}
-
-``` r
+```{r}
 library(xmlprocessor)
 ```
 
-### Fill a xml template
+
+# Fill a xml template
 
 One of the main goal of package {xmlprocessor} is to facilitate the serial creatoin of xml file. From a xml template, you can use a dataframe to replace text and attribute values.
 
 Starting with the creation and printing of a template :
 
-``` r
+```{r}
 library(xml2)
 template <- read_xml("<parent>
                         <child nom='child1'>
@@ -37,6 +38,7 @@ template <- read_xml("<parent>
                           null
                         </child>
                       </parent>")
+print(template)                   
 ```
 
 The xml template contains 4 values that can be changed : grandchild1, grandchild2, child1 and child2. The first two are texts and the two latter are attributes values.
@@ -44,25 +46,27 @@ The xml template contains 4 values that can be changed : grandchild1, grandchild
 To fill the template with different values, you can build a dataframe where the columns names are the exact text to be replaced. For text values, this should be the whole text between xml element (<...>thistext</...>) and for attributes values, this should be the whole text between quotes.
 
 
-``` r
+```{r}
 toreplace <- data.frame(child1 = c("Ben", "Thomas"), child2 = c("Sarah", "Marie"),
 grandchild1 = c("Brad", "Angelica"), grandchild2 = c("Jude", "Lea"))
+toreplace
 ```
 
 You can then fill the template with information contained in `toreplace` to create a list with two xml documents with the structure as `template` but where grandchild1, grandchild2, child1 and child2 are replaced by the corresponding values in `toreplace`.
 
-``` r
+```{r}
 # No export, no collapsing
 newxml <- xml_fill_template(xmltemplate = template, with = toreplace)
-# Export and collapsing
-newxml <- xml_fill_template(template, toreplace, collapse = "grandparent",
-export = getwd(), name = "testexport")
+print(newxml[[1]])
+print(newxml[[2]])
 ```
-## Vignette
 
-This package also contains a [vignette](inst/doc/use_of_xmlprocessor.html) that explained with more details the use of package {xmlprocessor}
+It is also possible to collapse the filled xml documents ont a big one by specifying a root node name with the `collapse` argument. Note that if the given root node name is als the root node name of `template`, the latter must contain only one child (which can contains several children and so on).
 
-## Code of conduct
+```{r}
+# Export and collapsing
+newxml <- xml_fill_template(xmltemplate = template, with = toreplace, collapse = "grandparent")
+print(newxml)
+```
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+Eventually, you can export the xml document by specifying a path to a folder with the `export` argument and a name (or names) of the xml file(s) exported with the `name` argument.

@@ -8,3 +8,6 @@ usethis::use_pipe()
 
 attachment::att_to_description()
 usethis::use_tidy_description()
+
+usethis::use_vignette("use_of_xmlprocessor")
+devtools::build_vignettes()
