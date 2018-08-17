@@ -42,7 +42,8 @@ xml_fill_template <- function(xmltemplate, with, collapse = NULL, export = NULL,
 
   if (!is.null(collapse)) {
     if (xml_name(xmltemplate) != collapse) {
-      walk(newxml, ~ xml_add_parent(.x = ., .value = collapse))
+      lnewxml <- map(newxml, ~ setNames(list(as_list(.)), collapse))
+      newxml <- map(lnewxml, ~ as_xml_document(.))
     }
     final_newxml <- as_xml_document(as_list(newxml[[1]]))
     walk(newxml[-1], ~ xml_add_child(final_newxml,
