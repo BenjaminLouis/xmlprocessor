@@ -60,7 +60,11 @@ export = getwd(), name = "testexport")
 ```
 ## Vignette
 
-This package also contains a [vignette](~/inst/doc/use_of_xmlprocessor.html) that explained with more details the use of package {xmlprocessor}
+This package also contains a vignette that explained with more details the use of package {xmlprocessor}. After installing it, you can see the vignette through :
+
+``` r
+vignette("use_of_xmlprocessor", package = "xmlprocessor")
+```
 
 ## Code of conduct
 
