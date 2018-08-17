@@ -1,9 +1,11 @@
-Package: pkgM17100003
-Title: What the Package Does (one line, title case)
+Package: xmlprocessor
+Title: Process xml file: create, fill template, export 
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Benjamin", "Louis", email = "benjaminlouis.pro@gmail.com", role = c("aut", "cre"))
+Description: This package is built in order to help with the preparation of xml files. It was motivated by the laborious work of xml files processing that are used for simulations in an agronomic model. It strongly rests on the {xml2} package but contains functions that are wrappers for the creation and the filling of xml template. 
 License: GPL-3
+URL: https://github.com/BenjaminLouis/xmlprocessor
+BugReports: https://github.com/BenjaminLouis/xmlprocessor/issues
 Imports: 
     dplyr,
     magrittr,
