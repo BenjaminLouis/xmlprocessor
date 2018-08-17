@@ -11,3 +11,5 @@ usethis::use_tidy_description()
 
 usethis::use_vignette("use_of_xmlprocessor")
 devtools::build_vignettes()
+
+attachment::create_dependencies_file()
