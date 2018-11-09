@@ -12,4 +12,8 @@ usethis::use_tidy_description()
 usethis::use_vignette("use_of_xmlprocessor")
 devtools::build_vignettes()
 
+usethis::use_testthat()
+usethis::use_test("xml_replace_values")
+usethis::use_test("xml_fill_template")
+
 attachment::create_dependencies_file()
