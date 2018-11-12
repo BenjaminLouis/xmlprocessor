@@ -1,4 +1,7 @@
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build status](https://travis-ci.org/BenjaminLouis/xmlprocessor.svg?branch=master)](https://travis-ci.org/BenjaminLouis/xmlprocessor)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/BenjaminLouis/xmlprocessor?branch=master&svg=true)](https://ci.appveyor.com/project/BenjaminLouis/xmlprocessor)
+[![Coverage status](https://codecov.io/gh/BenjaminLouis/xmlprocessor/branch/master/graph/badge.svg)](https://codecov.io/github/BenjaminLouis/xmlprocessor?branch=master)
 
 # Package {xmlprocessor}
 
