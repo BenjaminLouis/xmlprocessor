@@ -17,10 +17,6 @@ You can install the development version of xmlprocessor from [GitHub](https://gi
 devtools::install_github("BenjaminLouis/xmlprocessor")
 ```
 
-```{r echo = FALSE}
-#Package {xmlprocessor} depends on other package. To install them, please run the command lines in #[dependencies.R](https://github.com/BenjaminLouis/xmlprocessor/blob/master/inst/dependencies.R)
-```
-
 ## Use package {xmlprocessor}
 
 ``` r
