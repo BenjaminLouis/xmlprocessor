@@ -10,13 +10,16 @@ The goal of xmlprocessor is to help with the preparation of xml files. It was mo
 
 ## Installation
 
-You can install the released version of xmlprocessor the development version from [GitHub](https://github.com/) with:
+You can install the development version of xmlprocessor from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("BenjaminLouis/xmlprocessor")
 ```
-Package {xmlprocessor} depends on other package. To install them, please run the command lines in [dependencies.R](https://github.com/BenjaminLouis/xmlprocessor/blob/master/inst/dependencies.R)
+
+```{r echo = FALSE}
+#Package {xmlprocessor} depends on other package. To install them, please run the command lines in #[dependencies.R](https://github.com/BenjaminLouis/xmlprocessor/blob/master/inst/dependencies.R)
+```
 
 ## Use package {xmlprocessor}
 
@@ -26,9 +29,9 @@ library(xmlprocessor)
 
 ### Fill a xml template
 
-One of the main goal of package {xmlprocessor} is to facilitate the serial creatoin of xml file. From a xml template, you can use a dataframe to replace text and attribute values.
+One of the main goal of package {xmlprocessor} is to facilitate the serial creation of xml files. From a xml template, you can use a dataframe to replace text and attribute values.
 
-Starting with the creation and printing of a template :
+Starting with the creation of a xml template :
 
 ``` r
 library(xml2)
