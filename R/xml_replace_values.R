@@ -1,7 +1,7 @@
 #' Replace values in a xml template document
 #'
 #' @param xml a xml document read with \code{read_xml}
-#' @param replacement one of a one row dataframe, a named list or a named vector where (col)names correspond to  the values to replace in the xml template and the elements are the values to replace with
+#' @param replacement one of a one row dataframe, a named list or a named vector where (col)names correspond to the values to replace in the xml template and the elements are the values to replace with
 #'
 #' @return a new xml document with changes applied to the xml template
 #'
